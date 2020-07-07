@@ -17,6 +17,8 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     @IBOutlet weak var searchLabel: UILabel!
     @IBOutlet weak var searchMap: UIButton!
     
+    var myPin: MKPointAnnotation!
+    
     
     var myMapView: MKMapView!
     var myLocationManager: CLLocationManager!
@@ -64,6 +66,19 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 
         // MapViewをViewに追加.
         self.view.addSubview(myMapView)
+        
+        // UIButtonを作成する.
+        let myButton: UIButton = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 50))
+        myButton.layer.position = CGPoint(x: self.view.frame.width/2, y: self.view.frame.height-100)
+        myButton.layer.masksToBounds = true
+        myButton.layer.cornerRadius = 20.0
+        myButton.setTitle("目的地に設定", for: .normal)
+        myButton.backgroundColor = UIColor.red
+        myButton.setTitleColor(UIColor.white, for: .normal)
+        myButton.addTarget(self, action: #selector(ViewController.onClickMyButton(sender:)), for: .touchUpInside)
+        // UIButtonをviewに追加.
+        self.view.addSubview(myButton)
+
         
         // 長押しのUIGestureRecognizerを生成.
         let myLongPress: UILongPressGestureRecognizer = UILongPressGestureRecognizer()
@@ -186,7 +201,15 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
 
         return myPinView
     }
+    
+    @objc func onClickMyButton(sender: UIButton) {
+//        self.dismiss(animated: true, completion: nil)
+        
+//        let preVC = self.presentingViewController as! ViewController
+//        preVC.variable = self.variable  //ここで値渡し
+
+//  }
+    }
 
 }
 
-// commit test2

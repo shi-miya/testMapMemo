@@ -68,27 +68,27 @@ class MyMapViewController: UIViewController, MKMapViewDelegate, CLLocationManage
          // UIButtonをviewに追加.
         self.view.addSubview(myButton)
          
-         // 長押しのUIGestureRecognizerを生成.
-         let myLongPress: UILongPressGestureRecognizer = UILongPressGestureRecognizer()
-         myLongPress.addTarget(self, action: #selector(MyMapViewController.recognizeLongPress(sender:)))
+        // 長押しのUIGestureRecognizerを生成.
+        let myLongPress: UILongPressGestureRecognizer = UILongPressGestureRecognizer()
+        myLongPress.addTarget(self, action: #selector(MyMapViewController.recognizeLongPress(sender:)))
 
-         // MapViewにUIGestureRecognizerを追加.
-         myMapView.addGestureRecognizer(myLongPress)
+        // MapViewにUIGestureRecognizerを追加.
+        myMapView.addGestureRecognizer(myLongPress)
 
-         // 中心点の緯度経度.
-         let myLat: CLLocationDegrees = 37.506804
-         let myLon: CLLocationDegrees = 139.930531
-         let myCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2DMake(myLat, myLon) as CLLocationCoordinate2D
+        // 中心点の緯度経度.
+        let myLat: CLLocationDegrees = 37.506804
+        let myLon: CLLocationDegrees = 139.930531
+        let myCoordinate: CLLocationCoordinate2D = CLLocationCoordinate2DMake(myLat, myLon) as CLLocationCoordinate2D
 
-         // 縮尺.
-         let myLatDist : CLLocationDistance = 100
-         let myLonDist : CLLocationDistance = 100
+        // 縮尺.
+        let myLatDist : CLLocationDistance = 100
+        let myLonDist : CLLocationDistance = 100
 
-         // Regionを作成.
-         let myRegion: MKCoordinateRegion = MKCoordinateRegion(center: myCoordinate, latitudinalMeters: myLatDist, longitudinalMeters: myLonDist);
+        // Regionを作成.
+        let myRegion: MKCoordinateRegion = MKCoordinateRegion(center: myCoordinate, latitudinalMeters: myLatDist, longitudinalMeters: myLonDist);
 
-         // MapViewに反映.
-         myMapView.setRegion(myRegion, animated: true)
+        // MapViewに反映.
+        myMapView.setRegion(myRegion, animated: true)
     }
     
     // GPSから値を取得した際に呼び出されるメソッド.
@@ -157,11 +157,11 @@ class MyMapViewController: UIViewController, MKMapViewDelegate, CLLocationManage
         // 座標を設定.
         myPin.coordinate = myCoordinate
 
-        // タイトルを設定.
-        myPin.title = "タイトル"
-
-        // サブタイトルを設定.
-        myPin.subtitle = "サブタイトル"
+//        // タイトルを設定.
+//        myPin.title = "タイトル"
+//
+//        // サブタイトルを設定.
+//        myPin.subtitle = "サブタイトル"
 
         // MapViewにピンを追加.
         myMapView.addAnnotation(myPin)
@@ -190,5 +190,10 @@ class MyMapViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     }
     
     @objc func onClickMyButton(sender: UIButton) {
+        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+        
+//      149行目のlocationをViewControllerに渡したい
+        viewController.outPutLocation = location
+        self.dismiss(animated: true, completion: nil)
     }
 }

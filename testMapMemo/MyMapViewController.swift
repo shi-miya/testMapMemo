@@ -15,6 +15,7 @@ class MyMapViewController: UIViewController, MKMapViewDelegate, CLLocationManage
     var myPin: MKPointAnnotation!
     var myMapView: MKMapView!
     var myLocationManager: CLLocationManager!
+    var keepLocation: CGPoint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -147,6 +148,7 @@ class MyMapViewController: UIViewController, MKMapViewDelegate, CLLocationManage
 
         // 長押しした地点の座標を取得.
         let location = sender.location(in: myMapView)
+        keepLocation = location
 
         // locationをCLLocationCoordinate2Dに変換.
         let myCoordinate: CLLocationCoordinate2D = myMapView.convert(location, toCoordinateFrom: myMapView)
@@ -193,7 +195,7 @@ class MyMapViewController: UIViewController, MKMapViewDelegate, CLLocationManage
         let viewController = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as! ViewController
         
 //      149行目のlocationをViewControllerに渡したい
-        viewController.outPutLocation = location
+        viewController.outPutLocation = keepLocation!
         self.dismiss(animated: true, completion: nil)
     }
 }

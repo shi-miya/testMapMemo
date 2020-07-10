@@ -14,14 +14,20 @@ class ViewController: UIViewController {
     @IBOutlet weak var inputToDo: UITextView!
     @IBOutlet weak var searchLabel: UILabel!
     @IBOutlet weak var searchMap: UIButton!
-
+    
+    var outPutLocation : CGPoint!
+    @IBOutlet weak var label: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
 
     @IBAction func searchButton(_ sender: Any) {
         let myMapViewController = self.storyboard?.instantiateViewController(withIdentifier: "MyMapViewController") as! MyMapViewController
         self.present(myMapViewController, animated: true, completion: nil)
+        outPutLocation = myMapViewController.keepLocation
+        print(outPutLocation!)
     }
     
     

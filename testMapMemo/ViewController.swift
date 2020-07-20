@@ -26,8 +26,11 @@ class ViewController: UIViewController {
     @IBAction func searchButton(_ sender: Any) {
         let myMapViewController = self.storyboard?.instantiateViewController(withIdentifier: "MyMapViewController") as! MyMapViewController
         self.present(myMapViewController, animated: true, completion: nil)
-        outPutLocation = myMapViewController.keepLocation
-        print(outPutLocation!)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print(outPutLocation)
     }
     
     
